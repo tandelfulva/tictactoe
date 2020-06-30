@@ -126,7 +126,6 @@ func main() {
 func TurnPlayer(player string) bool {
 reSelect:
 	fmt.Print(player, ", Enter the position you wish to place your mark:")
-	//_, err := fmt.Scan(&position)
 	reader = bufio.NewReader(os.Stdin)
 	pos, err := reader.ReadString('\n')
 	checkError(err)
@@ -136,20 +135,6 @@ reSelect:
 		fmt.Println("Position should be an integer")
 		goto reSelect
 	}
-	/* for {
-		fmt.Print(player, ", Enter the position you wish to place your mark:")
-		reader = bufio.NewReader(os.Stdin)
-		pos, err := reader.ReadString('\n')
-		checkError(err)
-		pos = strings.TrimSpace(pos)
-		position, err = strconv.Atoi(pos)
-		if err != nil {
-			fmt.Println("Position should be an integer")
-			continue
-		} else {
-			break
-		}
-	} */
 	result, err := gameService.Play(uint8(position))
 	if err != nil {
 		fmt.Println(err)
